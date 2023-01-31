@@ -15,27 +15,28 @@ function getSafeValue($value){
 	);
 }
 
-function getResumes(){
+function getDeposits(){
 	global $conn;
 	$serverData = Array();
-	$res = $conn->query("Select * from resume order by id desc");
+	$res = $conn->query("Select * from deposits order by id desc");
 	if($res->num_rows > 0){
 		while($row = $res->fetch_assoc()){
-			$serverData[$row['id']] = $row;
+			$serverData[count($serverData)] = $row;
 		}
 	}
 	return $serverData;
 }
 
-function getContactUs(){
+function getWithdraws(){
 	global $conn;
 	$serverData = Array();
-	$res = $conn->query("Select * from contact_us order by id desc");
+	$res = $conn->query("Select * from withdraw order by id desc");
 	if($res->num_rows > 0){
 		while($row = $res->fetch_assoc()){
-			$serverData[$row['id']] = $row;
+			$serverData[count($serverData)] = $row;
 		}
 	}
 	return $serverData;
 }
+
 ?>

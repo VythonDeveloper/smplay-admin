@@ -1,4 +1,6 @@
-<?php include "header.php";?>
+<?php include "header.php";
+$depositData = getDeposits();
+?>
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <div class="p-4 bg-white light:bg-gray-900">
@@ -35,22 +37,22 @@
         </thead>
         <tbody>
             <?php
-            for($i = 0; $i < 10; $i++){ ?>
+            foreach($depositData as $value){ ?>
                 <tr class="bg-white border-b light:bg-gray-800 light:border-gray-700 hover:bg-gray-50 light:hover:bg-gray-600">
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap light:text-white">
-                        1
+                        <?php echo $value['orderId'];?>
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap light:text-white">
-                        Vivek Verma, +91 8653826902, Paytm Payments Banks
+                        <?php echo $value['userId'];?>
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap light:text-white">
-                        ₹ 30.00
+                        ₹ <?php echo $value['amount'];?>
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap light:text-white">
-                        Success
+                        <?php echo $value['status'];?>
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap light:text-white text-right">
-                        2023-06-19 12:03:55
+                        <?php echo $value['date'];?>
                     </td>
                     <!-- <td class="px-6 py-4 text-right">
                         <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
