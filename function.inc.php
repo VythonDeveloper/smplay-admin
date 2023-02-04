@@ -27,6 +27,25 @@ function getSattaMarkets(){
 	return $serverData;
 }
 
+function getAppUsers(){
+	global $conn;
+	$serverData = Array();
+	$res = $conn->query("Select * from user order by id desc");
+	if($res->num_rows > 0){
+		while($row = $res->fetch_assoc()){
+			$userId = $row['id'];
+			$bankRes = $conn->query("Select * from bank_details where userId = '$userId'");
+			$bankRow = Array();
+			if($bankRes->num_rows > 0){
+				$bankRow = $bankRes->fetch_assoc();
+			}
+			$row['bankDetails'] = $bankRow;
+			$serverData[count($serverData)] = $row;
+		}
+	}
+	return $serverData;
+}
+
 function getGameRuleContent(){
 	global $conn;
 	$serverData = Array();
@@ -52,10 +71,10 @@ function getDeposits(){
 
 function getWithdraws(){
 	global $conn;
-	$serverData = Array();
-	$res = $conn->query("Select * from withdraw order by id desc");
-	if($res->num_rows > 0){
-		while($row = $res->fetch_assoc()){
+	$serverData = array();
+	$res = $conn->query("Select wit.*, us.phone from withdraw as wit, user as us where wit.userId = us.id order by id desc");
+	if ($res->num_rows > 0) {
+		while ($row = $res->fetch_assoc()) {
 			$serverData[count($serverData)] = $row;
 		}
 	}

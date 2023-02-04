@@ -1,4 +1,7 @@
-<?php include "header.php"; ?>
+<?php 
+include "header.php"; 
+$userData = getAppUsers();
+?>
           
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <div class="p-4 bg-white light:bg-gray-900">
@@ -20,7 +23,7 @@
                     Fullname
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Phone
+                    Phone | Email
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Wallet
@@ -32,22 +35,29 @@
         </thead>
         <tbody>
             <?php
-            for($i = 0; $i < 10; $i++){ ?>
+            foreach($userData as $value){ ?>
                 <tr class="bg-white border-b light:bg-gray-800 light:border-gray-700 hover:bg-gray-50 light:hover:bg-gray-600">
                     <th class="w-4 p-4">
-                        1
+                        <?php echo $value['id'];?>
                     </th>
                     <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap light:text-white">
-                        Vivek
+                        <?php echo $value['fullname'];?>
                     </th>
                     <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap light:text-white">
-                        +91 8653826902
+                        +91 <?php echo $value['phone'].'<br>'.$value['email'];?>
                     </td>
                     <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap light:text-white">
-                        ₹ 200.00
+                        ₹ <?php echo $value['wallet'];?>
                     </td>
                     <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap light:text-white">
-                        Bank: SBI<br>IFSC: XBHH96654<br>A/C No.: 741200036555<br>Holder name: Vivek Verma
+                        <?php 
+                            if($value['bankDetails'] != null){
+                                $bankDetails = "Bank Name: ".$value['bankDetails']['bankName']."<br>A/c No.: ".$value['bankDetails']['accNo']."<br>IFSC Code: ".$value['bankDetails']['ifscCode']."<br>Holder: ".$value['bankDetails']['acHolderName'];
+                            } else{
+                                $bankDetails = '-';
+                            }
+                            echo $bankDetails;
+                        ?>
                     </td>
                 </tr>
             <?php } ?>

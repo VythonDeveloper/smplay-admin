@@ -19,10 +19,13 @@ $withdrawData = getWithdraws();
                     Order-Id
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    User
+                    User Phone
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Amount
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Bank Details
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Status
@@ -43,10 +46,13 @@ $withdrawData = getWithdraws();
                         <?php echo $value['orderId'];?>
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap light:text-white">
-                        <?php echo $value['userId'];?>
+                        <?php echo $value['phone'];?>
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap light:text-white">
                         ₹ <?php echo $value['amount'];?>
+                    </td>
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap light:text-white">
+                        <?php echo $value['bankDetails'];?>
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap light:text-white">
                         <?php echo $value['status'];?>
