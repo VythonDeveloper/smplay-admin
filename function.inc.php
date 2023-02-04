@@ -15,6 +15,29 @@ function getSafeValue($value){
 	);
 }
 
+function getSattaMarkets(){
+	global $conn;
+	$serverData = Array();
+	$res = $conn->query("Select * from satta_markets order by id desc");
+	if($res->num_rows > 0){
+		while($row = $res->fetch_assoc()){
+			$serverData[count($serverData)] = $row;
+		}
+	}
+	return $serverData;
+}
+
+function getGameRuleContent(){
+	global $conn;
+	$serverData = Array();
+	$res = $conn->query("Select * from game_rule where id = '1'");
+	if($res->num_rows > 0){
+		$serverData = $res->fetch_assoc();
+		
+	}
+	return $serverData;
+}
+
 function getDeposits(){
 	global $conn;
 	$serverData = Array();
