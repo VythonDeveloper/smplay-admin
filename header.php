@@ -78,7 +78,7 @@ elseif($curr_path == 'game-rules' || $curr_path == 'game-rules.php'){
                         </button>
                         <a href="admin-dashboard.php" class="flex ml-2 md:mr-24">
                             <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="FlowBite Logo" />
-                            <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"><?php echo Site_Name;?></span>
+                            <span class="self-center text-xl font-semibold sm:text-2xl dark:text-white"><?php echo Site_Name;?></span>
                         </a>
                     </div>
                     <div class="flex items-center">
@@ -184,7 +184,6 @@ elseif($curr_path == 'game-rules' || $curr_path == 'game-rules.php'){
             </div>
         </aside>
 
-        
         <div class="p-4 sm:ml-64">
             <div class="p-4 light:border-gray-700 mt-14">
                 <nav class="flex mb-4" aria-label="Breadcrumb">

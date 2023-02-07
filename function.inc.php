@@ -93,4 +93,16 @@ function getMarketResult($date){
 	}
 	return $serverData;
 }
+
+function getNotifications(){
+	global $conn;
+	$serverData = array();
+	$res = $conn->query("Select * from notifications order by id desc");
+	if ($res->num_rows > 0) {
+		while ($row = $res->fetch_assoc()) {
+			$serverData[count($serverData)] = $row;
+		}
+	}
+	return $serverData;
+}
 ?>
