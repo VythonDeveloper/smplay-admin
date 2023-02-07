@@ -2,7 +2,7 @@
 include "session.php";
 $script_filename =  explode('/',$_SERVER['SCRIPT_FILENAME']);
 $curr_path = $script_filename[count($script_filename)-1];
-$pageName = '';
+$pageName = $marketOpen = '';
 
 if($curr_path == 'admin-dashboard' || $curr_path == 'admin-dashboard.php'){
     $pageName = 'Dashboard';
@@ -32,6 +32,9 @@ elseif($curr_path == 'push-notification' || $curr_path == 'push-notification.php
 }
 elseif($curr_path == 'game-rules' || $curr_path == 'game-rules.php'){
     $pageName = "Game Rules";
+}
+elseif($curr_path == 'change-password' || $curr_path == 'change-password.php'){
+    $pageName = "Change Password";
 }
 ?>
 <!DOCTYPE html>
@@ -86,7 +89,7 @@ elseif($curr_path == 'game-rules' || $curr_path == 'game-rules.php'){
                             <div>
                                 <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
                                     <span class="sr-only">Open user menu</span>
-                                    <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+                                    <img class="w-8 h-8 rounded-full" src="https://datarundown.com/wp-content/uploads/2022/03/Datarundown-Admin-Avatar-Circle-1.png" alt="user photo">
                                 </button>
                             </div>
                             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">

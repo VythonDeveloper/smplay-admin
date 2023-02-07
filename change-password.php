@@ -1,14 +1,11 @@
 <?php 
 include "header.php";
-include "../dbcon.php";
-
 $errorMsg = '';
-if(isset($_POST['changeBtn'])){
+if(isset($_POST['pathAction']) && $_POST['pathAction'] == "Update-Password"){
     $currentPassword = md5($_POST['currentPassword']);
     $newPassword = md5($_POST['newPassword']);
     $confirmPassword = md5($_POST['confirmPassword']);
     $adminId = $_SESSION['adminId'];
-
     if($newPassword == $confirmPassword){
         $conn->query("Update admin set password = '$newPassword' where id = '$adminId' and password = '$currentPassword'");
         if($conn->affected_rows > 0){
@@ -21,69 +18,23 @@ if(isset($_POST['changeBtn'])){
     }
 }
 ?>
-<section class="text-blueGray-700">
-    <div class="container items-center px-5">
-        <div class="flex flex-col w-full p-10 my-6 transition duration-500 ease-in-out transform bg-white rounded-lg md:mt-0">
-            <div class="mt-6">
-                <form method="POST" class="space-y-6 mb-10">
-                    <div class="grid grid-cols-1 gap-2 lg:grid-cols-3">
-                        <div>
-                            <label for="currentPassword" class="block text-sm font-medium text-neutral-600"> Current Password </label>
-                            <div class="mt-1">
-                                <input
-                                    id="currentPassword"
-                                    name="currentPassword"
-                                    type="password"
-                                    required=""
-                                    placeholder="**********"
-                                    class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
-                                />
-                            </div>
-                        </div>
-                        <div class="space-y-1">
-                            <label for="newPassword" class="block text-sm font-medium text-neutral-600"> New Password </label>
-                            <div class="mt-1">
-                                <input
-                                    id="newPassword"
-                                    name="newPassword"
-                                    type="password"
-                                    required=""
-                                    placeholder="************"
-                                    class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
-                                />
-                            </div>
-                        </div>
-                        <div class="space-y-1">
-                            <label for="confirmPassword" class="block text-sm font-medium text-neutral-600"> Confirm Password </label>
-                            <div class="mt-1">
-                                <input
-                                    id="confirmPassword"
-                                    name="confirmPassword"
-                                    type="password"
-                                    required=""
-                                    placeholder="*************"
-                                    class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <button
-                            type="submit"
-                            id="changeBtn"
-                            name="changeBtn"
-                            class="inline-flex text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                        >
-                            Change Password
-                            <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </form>
-                <?php echo $errorMsg;?>
-            </div>
+<form method="POST" action="">
+    <div class="grid md:grid-cols-3 md:gap-6 m-3">
+        <div class="relative z-0 w-full mb-6 group">
+            <label for="currentPassword" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Current Password</label>
+            <input type="password" id="currentPassword" name="currentPassword" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500" placeholder="*******" required>
+        </div>
+        <div class="relative z-0 w-full mb-6 group">
+            <label for="newPassword" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">New Password</label>
+            <input type="password" id="newPassword" name="newPassword" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500" placeholder="*******" required>
+        </div>
+        <div class="relative z-0 w-full mb-6 group">
+            <label for="confirmPassword" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500" placeholder="*******" required>
         </div>
     </div>
-</section>
+    <?php echo $errorMsg;?>
+    <button type="submit" name="pathAction" value="Update-Password" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Change Password</button>
+</form>
+
 <?php include "footer.php";?>
