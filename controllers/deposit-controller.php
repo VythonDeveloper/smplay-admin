@@ -26,9 +26,26 @@ if(isset($_POST['pathAction']) && getSafeValue($_POST['pathAction']) == "Deposit
             where id = '$beneficiaryId' and wallet + $depositAmount > 0");
 
             if($conn->affected_rows > 0){
-                echo "<script>alert('Deposit Amount adjusted');</script>";
+                $orderId = "DP-".substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(24 / strlen($x)))), 1, 24);
+
+                $conn->query("Insert into passbook set
+                orderId = '$orderId',
+                userId = '$beneficiaryId',
+                title = 'Deposited to wallet',
+                amount = '$depositAmount',
+                bankDetails = '',
+                data = '',
+                status = 'Success',
+                date = '$addedOn',
+                txnType = 'Deposit'
+                ");
+                if($conn->affected_rows > 0){
+                    echo "<script>alert('Deposit Amount adjusted');</script>";
+                }  else{
+                    echo "<script>alert('Something went wrong. Try again');</script>";
+                }
             } else{
-                echo "<script>alert('Something went wrong. Try again');</script>";
+                echo "<script>alert('No such user. Please check');</script>";
             }
         }     
     } else{

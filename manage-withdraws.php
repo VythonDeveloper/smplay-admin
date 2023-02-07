@@ -19,7 +19,7 @@ $withdrawData = getWithdraws();
                     Order-Id
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    User Phone
+                    User
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Amount
@@ -46,7 +46,7 @@ $withdrawData = getWithdraws();
                         <?php echo $value['orderId'];?>
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap light:text-white">
-                        <?php echo $value['phone'];?>
+                        <?php echo $value['fullname'].',<br>+91 '.$value['phone'];?>
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap light:text-white">
                         ₹ <?php echo $value['amount'];?>

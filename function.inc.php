@@ -60,7 +60,7 @@ function getGameRuleContent(){
 function getDeposits(){
 	global $conn;
 	$serverData = Array();
-	$res = $conn->query("Select * from deposits order by id desc");
+	$res = $conn->query("Select dep.*, us.fullname, us.phone from passbook as dep, user as us where dep.txnType = 'Deposit' and dep.userId = us.id order by dep.id desc");
 	if($res->num_rows > 0){
 		while($row = $res->fetch_assoc()){
 			$serverData[count($serverData)] = $row;
@@ -72,7 +72,7 @@ function getDeposits(){
 function getWithdraws(){
 	global $conn;
 	$serverData = array();
-	$res = $conn->query("Select wit.*, us.phone from withdraw as wit, user as us where wit.userId = us.id order by id desc");
+	$res = $conn->query("Select wit.*, us.fullname, us.phone from passbook as wit, user as us where wit.txnType = 'Withdraw' and wit.userId = us.id order by id desc");
 	if ($res->num_rows > 0) {
 		while ($row = $res->fetch_assoc()) {
 			$serverData[count($serverData)] = $row;
@@ -81,4 +81,16 @@ function getWithdraws(){
 	return $serverData;
 }
 
+function getMarketResult($date){
+	global $conn;
+	$serverData = array();
+	$date = date('Y-m-d', strtotime($date));
+	$res = $conn->query("Select * from bid_results where date = '$date'");
+	if ($res->num_rows > 0) {
+		while ($row = $res->fetch_assoc()) {
+			$serverData[$row['marketId']] = $row;
+		}
+	}
+	return $serverData;
+}
 ?>

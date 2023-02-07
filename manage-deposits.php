@@ -43,7 +43,7 @@ $depositData = getDeposits();
                         <?php echo $value['orderId'];?>
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap light:text-white">
-                        <?php echo $value['userId'];?>
+                        <?php echo $value['fullname'].',<br>+91'.$value['phone'];?>
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap light:text-white">
                         ₹ <?php echo $value['amount'];?>
