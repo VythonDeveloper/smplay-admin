@@ -2,9 +2,8 @@
 include "./dbcon.php";
 
 // Define Global Variables
-// define("BaseUrl", "http://localhost/cash-trend-admin");
-define("Site_Name", "Matka Booking");
-define("Site_Version", "1.0");
+define("Site_Name", "SM Plays");
+define("Site_Version", "1.5");
 // define("Script_Password", "ad38b53ef326ef");
 
 // Define Reusable functions
