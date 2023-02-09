@@ -46,7 +46,7 @@ if(isset($_POST['pathAction']) && getSafeValue($_POST['pathAction']) == "Post-Bi
                     }
                 }
             }
-       } else{
+        } else{
             $conn->query("Insert into bid_results set
             openScore = '".$openScores[$index]."',
             jodiScore = '".$jodiScores[$index]."',
@@ -66,7 +66,7 @@ if(isset($_POST['pathAction']) && getSafeValue($_POST['pathAction']) == "Post-Bi
                     }
                 }
             }
-       }      
+        }      
     }
     header("Location:../bid-result.php");
 }
