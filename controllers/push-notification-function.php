@@ -10,7 +10,7 @@ function pushNotification($title, $content){
             'Content-Type' => 'application/json',
         ],
     ]);
-    $response->getBody();
+    // $response->getBody();
     echo json_encode(array("error"=>false, "message"=>"Notification executed Successfully", "serverResponse"=> $response->getBody()));
 }
 

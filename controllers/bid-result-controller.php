@@ -39,10 +39,9 @@ if(isset($_POST['pathAction']) && getSafeValue($_POST['pathAction']) == "Post-Bi
                 if($openScores[$index] != '' || $closeScores[$index] != ''){
                     $title = $markets[$index];
                     $content = ($openScores[$index] == '' ? '***' : $openScores[$index]).'-'.$jodiScores[$index].'-'.($closeScores[$index] == '' ? '***' : $closeScores[$index]);
-
                     // echo $title.' '.$marketDate.', '.$content;
-                    $currentTime = date('Hi', strtotime($addedOn));
-                    if($currentTime == $marketDate){
+                    $currentDate = date('Y-m-d', strtotime($addedOn));
+                    if($currentDate == $marketDate){
                         pushNotification($title.' | '.$marketDate, $content);
                     }
                 }
@@ -60,9 +59,9 @@ if(isset($_POST['pathAction']) && getSafeValue($_POST['pathAction']) == "Post-Bi
                 if($openScores[$index] != '' || $closeScores[$index] != ''){
                     $title = $markets[$index];
                     $content = ($openScores[$index] == '' ? '***' : $openScores[$index]).'-'.$jodiScores[$index].'-'.($closeScores[$index] == '' ? '***' : $closeScores[$index]);
-
                     // echo $title.' '.$marketDate.', '.$content;
-                    if($currentTime == $marketDate){
+                    $currentDate = date('Y-m-d', strtotime($addedOn));
+                    if($currentDate == $marketDate){
                         pushNotification($title.' | '.$marketDate, $content);
                     }
                 }
