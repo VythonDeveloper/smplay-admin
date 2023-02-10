@@ -43,15 +43,15 @@ $end_date = '2023-02-01';
                     </div>
                     <div class="relative z-0 w-full mb-6 group">
                         <label for="openScore_<?php echo $value['id'];?>" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Open</label>
-                        <input type="number" id="openScore_<?php echo $value['id'];?>" name="openScores[]" maxlength="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500 tracking-[.50em]" placeholder="***" onkeyup="calculateJodi('<?php echo $value['id'];?>')" oninput="this.value=this.value.slice(0,this.maxLength)" value="<?php echo $marketResult[$value['id']]['openScore'] ?? '';?>">
+                        <input type="number" id="openScore_<?php echo $value['id'];?>" name="openScores[]" maxlength="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500 tracking-[.50em]" placeholder="XXX" onkeyup="calculateJodi('<?php echo $value['id'];?>')" oninput="this.value=this.value.slice(0,this.maxLength)" value="<?php echo $marketResult[$value['id']]['openScore'] ?? '';?>">
                     </div>
                     <div class="relative z-0 w-full mb-6 group">
                         <label for="jodiScore_<?php echo $value['id'];?>" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Jodi</label>
-                        <input type="text" id="jodiScore_<?php echo $value['id'];?>" name="jodiScores[]" maxlength="2" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500 tracking-[.50em]" placeholder="**" readonly value="<?php echo $marketResult[$value['id']]['jodiScore'] ?? '';?>">
+                        <input type="text" id="jodiScore_<?php echo $value['id'];?>" name="jodiScores[]" maxlength="2" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500 tracking-[.50em]" placeholder="XX" readonly value="<?php echo $marketResult[$value['id']]['jodiScore'] ?? '';?>">
                     </div>
                     <div class="relative z-0 w-full mb-6 group">
                         <label for="closeScore_<?php echo $value['id'];?>" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Close</label>
-                        <input type="number" id="closeScore_<?php echo $value['id'];?>" name="closeScores[]" maxlength="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500 tracking-[.50em]" placeholder="***" onkeyup="calculateJodi('<?php echo $value['id'];?>')" oninput="this.value=this.value.slice(0,this.maxLength)" value="<?php echo $marketResult[$value['id']]['closeScore'] ?? '';?>">
+                        <input type="number" id="closeScore_<?php echo $value['id'];?>" name="closeScores[]" maxlength="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500 tracking-[.50em]" placeholder="XXX" onkeyup="calculateJodi('<?php echo $value['id'];?>')" oninput="this.value=this.value.slice(0,this.maxLength)" value="<?php echo $marketResult[$value['id']]['closeScore'] ?? '';?>">
                     </div>
                 </div>
             <?php  } ?>
@@ -69,8 +69,8 @@ $end_date = '2023-02-01';
     function calculateJodi(id){
         let openScore = _("openScore_"+id).value;
         let closeScore = _("closeScore_"+id).value;
-        let openJodi = '*';
-        let closeJodi = '*';
+        let openJodi = 'X';
+        let closeJodi = 'X';
         if(openScore.length == 3){
             openSum = 0;
             while (openScore) {
@@ -83,7 +83,7 @@ $end_date = '2023-02-01';
                 openJodi = Math.floor(openSum % 10);
             }
         } else{
-            openJodi = '*';
+            openJodi = 'X';
         }
 
         if(closeScore.length == 3){
@@ -98,7 +98,7 @@ $end_date = '2023-02-01';
                 closeJodi = Math.floor(closeSum % 10);
             }
         } else{
-            closeJodi = '*';
+            closeJodi = 'X';
         }
 
         _("jodiScore_"+id).value = openJodi.toString() + closeJodi.toString();

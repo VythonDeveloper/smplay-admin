@@ -57,7 +57,7 @@ function manageWinnersFunction($mktId, $mktName){
 
 // ---------------------JODI BID RESULT ----------------------------------------------------------
 
-        if($resultData['jodiScore'][0] != '*' && $resultData['jodiScore'][1] != '*'){
+        if($resultData['jodiScore'][0] != 'X' && $resultData['jodiScore'][1] != 'X'){
             $jodiRes = $conn->query("Select * from jodi_bids where marketId = '$mktId' and marketDate = '$marketDate' and status = 'Pending'");
             if($jodiRes->num_rows > 0){
                 while($jodiRow = $jodiRes->fetch_assoc()){
@@ -207,7 +207,7 @@ function manageWinnersFunction($mktId, $mktName){
 
 // ------------------------HALF SANGAM BID RESULT --------------------------------------------------
 
-        if($resultData['jodiScore'][0] != '*' && $resultData['jodiScore'][1] != '*' && $resultData['openScore'] != '' && $resultData['closeScore'] != ''){
+        if($resultData['jodiScore'][0] != 'X' && $resultData['jodiScore'][1] != 'X' && $resultData['openScore'] != '' && $resultData['closeScore'] != ''){
             $hlSangRes = $conn->query("Select * from half_sangam_bids where marketId = '$mktId' and marketDate = '$marketDate' and status = 'Pending'");
             if($hlSangRes->num_rows > 0){
                 while($hlSangRow = $hlSangRes->fetch_assoc()){
@@ -249,7 +249,7 @@ function manageWinnersFunction($mktId, $mktName){
 
 // ------------------------FULL SANGAM BID RESULT --------------------------------------------------
 
-        if($resultData['jodiScore'][0] != '*' && $resultData['jodiScore'][1] != '*' && $resultData['openScore'] != '' && $resultData['closeScore'] != ''){
+        if($resultData['jodiScore'][0] != 'X' && $resultData['jodiScore'][1] != 'X' && $resultData['openScore'] != '' && $resultData['closeScore'] != ''){
             $fullSangRes = $conn->query("Select * from full_sangam_bids where marketId = '$mktId' and marketDate = '$marketDate' and status = 'Pending'");
             if($fullSangRes->num_rows > 0){
                 while($fullSangRow = $fullSangRes->fetch_assoc()){
@@ -320,7 +320,7 @@ if(isset($_POST['pathAction']) && getSafeValue($_POST['pathAction']) == "Post-Bi
                 echo "Update"."<br>";
                 if($openScores[$index] != '' || $closeScores[$index] != ''){
                     $title = $markets[$index];
-                    $content = ($openScores[$index] == '' ? '***' : $openScores[$index]).'-'.$jodiScores[$index].'-'.($closeScores[$index] == '' ? '***' : $closeScores[$index]);
+                    $content = ($openScores[$index] == '' ? 'XXX' : $openScores[$index]).'-'.$jodiScores[$index].'-'.($closeScores[$index] == '' ? 'XXX' : $closeScores[$index]);
                     // echo $title.' '.$marketDate.', '.$content;
                     $currentDate = date('Y-m-d', strtotime($addedOn));
                     echo $currentDate."<br>";
@@ -343,7 +343,7 @@ if(isset($_POST['pathAction']) && getSafeValue($_POST['pathAction']) == "Post-Bi
 
                 if($openScores[$index] != '' || $closeScores[$index] != ''){
                     $title = $markets[$index];
-                    $content = ($openScores[$index] == '' ? '***' : $openScores[$index]).'-'.$jodiScores[$index].'-'.($closeScores[$index] == '' ? '***' : $closeScores[$index]);
+                    $content = ($openScores[$index] == '' ? 'XXX' : $openScores[$index]).'-'.$jodiScores[$index].'-'.($closeScores[$index] == '' ? 'XXX' : $closeScores[$index]);
                     // echo $title.' '.$marketDate.', '.$content;
                     $currentDate = date('Y-m-d', strtotime($addedOn));
                     echo $currentDate."<br>";
