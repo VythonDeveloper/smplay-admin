@@ -26,6 +26,16 @@ function getSattaMarkets(){
 	return $serverData;
 }
 
+function getMarketDetails($marketId){
+	global $conn;
+	$serverData = array();
+	$res = $conn->query("Select * from satta_markets where id = '$marketId'");
+	if ($res->num_rows > 0) {
+		$serverData = $res->fetch_assoc();
+	}
+	return $serverData;
+}
+
 function getAppUsers(){
 	global $conn;
 	$serverData = Array();
@@ -40,6 +50,38 @@ function getAppUsers(){
 			}
 			$row['bankDetails'] = $bankRow;
 			$serverData[count($serverData)] = $row;
+		}
+	}
+	return $serverData;
+}
+
+function getUserBids($gameType){
+	global $conn;
+	$serverData = Array();
+	if($gameType == "Single Ank"){
+		$sql = "Select bds.*, bds.marketDate as playDate, mkt.title, us.fullname, us.phone from single_ank_bids as bds, satta_markets as mkt, user as us where bds.marketId = mkt.id and bds.userId = us.id order by bds.date DESC";
+	} else if($gameType == "Jodi"){
+		$sql = "Select bds.*, bds.marketDate as playDate, mkt.title, us.fullname, us.phone from jodi_bids as bds, satta_markets as mkt, user as us where bds.marketId = mkt.id and bds.userId = us.id order by bds.date DESC";
+	} else if($gameType == "Single Patti"){
+		$sql = "Select bds.*, bds.marketDate as playDate, mkt.title, us.fullname, us.phone from single_patti_bids as bds, satta_markets as mkt, user as us where bds.marketId = mkt.id and bds.userId = us.id order by bds.date DESC";
+	} else if($gameType == "Double Patti"){
+		$sql = "Select bds.*, bds.marketDate as playDate, mkt.title, us.fullname, us.phone from double_patti_bids as bds, satta_markets as mkt, user as us where bds.marketId = mkt.id and bds.userId = us.id order by bds.date DESC";
+	} else if($gameType == "Triple Patti"){
+		$sql = "Select bds.*, bds.marketDate as playDate, mkt.title, us.fullname, us.phone from triple_patti_bids as bds, satta_markets as mkt, user as us where bds.marketId = mkt.id and bds.userId = us.id order by bds.date DESC";
+	} else if($gameType == "Half Sangam"){
+		$sql = "Select bds.*, bds.marketDate as playDate, mkt.title, us.fullname, us.phone from half_sangam_bids as bds, satta_markets as mkt, user as us where bds.marketId = mkt.id and bds.userId = us.id order by bds.date DESC";
+	} else if($gameType == "Full Sangam"){
+		$sql = "Select bds.*, bds.marketDate as playDate, mkt.title, us.fullname, us.phone from full_sangam_bids as bds, satta_markets as mkt, user as us where bds.marketId = mkt.id and bds.userId = us.id order by bds.date DESC";
+	} else{
+		$sql = "";
+	}
+
+	if($sql != ""){
+		$res = $conn->query($sql);
+		if($res->num_rows > 0){
+			while($row = $res->fetch_assoc()){
+				$serverData[count($serverData)] = $row;
+			}
 		}
 	}
 	return $serverData;

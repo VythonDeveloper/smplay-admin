@@ -10,6 +10,9 @@ if($curr_path == 'admin-dashboard' || $curr_path == 'admin-dashboard.php'){
 elseif($curr_path == 'manage-users' || $curr_path == 'manage-users.php'){
     $pageName = 'Manage Users';
 }
+elseif($curr_path == 'user-bids' || $curr_path == 'user-bids.php'){
+    $pageName = 'User Bids';
+}
 elseif($curr_path == 'add-market' || $curr_path == 'add-market.php'){
     $marketOpen = true;
     $pageName = "Add Satta Market";
@@ -17,6 +20,10 @@ elseif($curr_path == 'add-market' || $curr_path == 'add-market.php'){
 elseif($curr_path == 'market-list' || $curr_path == 'market-list.php'){
     $marketOpen = true;
     $pageName = "Satta Market List";
+}
+elseif($curr_path == 'edit-market' || $curr_path == 'edit-market.php'){
+    $marketOpen = true;
+    $pageName = "Edit Satta Market";
 }
 elseif($curr_path == 'bid-result' || $curr_path == 'bid-result.php'){
     $pageName = "Bid Result";
@@ -123,12 +130,21 @@ elseif($curr_path == 'change-password' || $curr_path == 'change-password.php'){
                             <span class="ml-3">Dashboard</span>
                         </a>
                     </li>
+                    <hr>
                     <li>
                         <a href="manage-users.php" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 <?php echo $pageName == 'Manage Users' ? 'bg-gray-700' : '';?>">
                             <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
                             </svg>
                             <span class="flex-1 ml-3 whitespace-nowrap">Manage Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="user-bids.php" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 <?php echo $pageName == 'User Bids' ? 'bg-gray-700' : '';?>">
+                            <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="flex-1 ml-3 whitespace-nowrap">User Bids</span>
                         </a>
                     </li>
                     <hr>

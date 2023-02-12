@@ -61,8 +61,15 @@ $withdrawData = getWithdraws();
                         <?php echo $value['date'];?>
                     </td>
                     <td class="px-6 py-4 text-right">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Approve</a>
-                        <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Reject</a>
+                        <?php if($value['status'] == 'Pending'){ ?>
+                            <form id="withdraw-form-<?php echo $value['id'];?>" action="./controllers/withdraw-controller.php" method="POST">
+                                <input type="hidden" name="orderId" value="<?php echo $value['orderId'];?>">
+                                <button type="submit" name="pathAction" value="Approve-Withdraw-Record" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick="return confirm('Are you sure to take action?');">Approve</button>
+                                <button type="submit" name="pathAction" value="Reject-Withdraw-Record" class="font-medium text-red-600 dark:text-red-500 hover:underline" onclick="return confirm('Are you sure to take action?');">Reject</button>
+                            </form>
+                        <?php } else{ ?>
+                            No action required
+                        <?php } ?>
                     </td>
                 </tr>
             <?php } ?>
