@@ -1,10 +1,10 @@
 <?php 
 include "header.php";
 $marketList = getSattaMarkets();
-$selectedDate = $_GET['date'] ?? date('l d M, Y',strtotime('+5 hour +30 minutes', strtotime(date("Y-m-d H:i:s"))));
+$selectedDate = $_GET['date'] ?? date('l d M, Y');
 $marketResult = getMarketResult($selectedDate);
 // print_r($marketResult);
-$date = date('Y-m-d',strtotime('+5 hour +30 minutes', strtotime(date("Y-m-d H:i:s"))));
+$date = date('Y-m-d');
 $end_date = '2023-02-01';
 ?>
 

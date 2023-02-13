@@ -7,8 +7,7 @@ function getSafeValue($value){
     );
 }
 
-$start = date("Y-m-d H:i:s");
-$addedOn = date('Y-m-d H:i:s',strtotime('+5 hour +30 minutes',strtotime($start)));
+$addedOn = date("Y-m-d H:i:s");
 
 $processStatus["error"] = false;
 $processStatus["message"] = "No Error";
