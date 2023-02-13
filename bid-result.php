@@ -38,11 +38,11 @@ $end_date = '2023-02-01';
                 <input type="hidden" id="marketId_<?php echo $value['id'];?>" name="marketIds[]" value="<?php echo $value['id'];?>">
                 <div class="grid md:grid-cols-4 md:gap-6">
                     <div class="relative z-0 w-full mb-6 group">
-                        <label for="market_<?php echo $value['id'];?>" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Market - <?php echo $value['resultOpenTime'];?> Hrs</label>
+                        <label for="market_<?php echo $value['id'];?>" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Market</label>
                         <input type="text" id="market_<?php echo $value['id'];?>" name="markets[]" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500" placeholder="Market Title" value="<?php echo $value['title'];?>" readonly>
                     </div>
                     <div class="relative z-0 w-full mb-6 group">
-                        <label for="openScore_<?php echo $value['id'];?>" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Open</label>
+                        <label for="openScore_<?php echo $value['id'];?>" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Open - <?php echo $value['openShiftResultTime'];?> Hrs</label>
                         <input type="number" id="openScore_<?php echo $value['id'];?>" name="openScores[]" maxlength="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500 tracking-[.50em]" placeholder="XXX" onkeyup="calculateJodi('<?php echo $value['id'];?>')" oninput="this.value=this.value.slice(0,this.maxLength)" value="<?php echo $marketResult[$value['id']]['openScore'] ?? '';?>">
                     </div>
                     <div class="relative z-0 w-full mb-6 group">
@@ -50,7 +50,7 @@ $end_date = '2023-02-01';
                         <input type="text" id="jodiScore_<?php echo $value['id'];?>" name="jodiScores[]" maxlength="2" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500 tracking-[.50em]" placeholder="XX" readonly value="<?php echo $marketResult[$value['id']]['jodiScore'] ?? '';?>">
                     </div>
                     <div class="relative z-0 w-full mb-6 group">
-                        <label for="closeScore_<?php echo $value['id'];?>" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Close</label>
+                        <label for="closeScore_<?php echo $value['id'];?>" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Close - <?php echo $value['closeShiftResultTime'];?> Hrs</label>
                         <input type="number" id="closeScore_<?php echo $value['id'];?>" name="closeScores[]" maxlength="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500 tracking-[.50em]" placeholder="XXX" onkeyup="calculateJodi('<?php echo $value['id'];?>')" oninput="this.value=this.value.slice(0,this.maxLength)" value="<?php echo $marketResult[$value['id']]['closeScore'] ?? '';?>">
                     </div>
                 </div>
