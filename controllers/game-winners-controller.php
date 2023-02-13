@@ -1,28 +1,17 @@
 <?php
 include "../dbcon.php";
-include "./push-notification-function.php";
 include "./game-rate-constants.inc.php";
 
 $addedOn = date("Y-m-d H:i:s");
 
-function getSafeValue($value){
+function Single_Ank_Winners($marketId, $marketName, $marketDate){
     global $conn;
-    return strip_tags(
-        mysqli_real_escape_string($conn, $value)
-    );
-}
-
-function manageWinnersFunction($marketId, $marketName){
-    global $conn;
-    global $marketDate;
     global $addedOn;
 
     $bidResultRes = $conn->query("Select * from bid_results where marketId = '$marketId' and date = '$marketDate'");
     if($bidResultRes->num_rows > 0){
         $bidResultData = $bidResultRes->fetch_assoc();
 
-// ------------------------SINGLE ANK BID RESULT -------------------------------------------------        
-        
         echo "Single Ank Game"."<br>";
         $singleAnkRes = $conn->query("Select * from single_ank_bids where marketId = '$marketId' and marketDate = '$marketDate' and status = 'Pending'");
         if($singleAnkRes->num_rows > 0){
@@ -118,7 +107,20 @@ function manageWinnersFunction($marketId, $marketName){
             echo "No one played the game or result declared"."<br>";
         }
 
-// ------------------------JODI BID RESULT ----------------------------------------------------------
+    } else{
+        echo "Invalid Market for Single Ank"."<br>";
+    }
+}
+
+// Single_Ank_Winners(12, "Time Bazar", "2023-02-13");
+
+function Jodi_Winners($marketId, $marketName, $marketDate){
+    global $conn;
+    global $addedOn;
+
+    $bidResultRes = $conn->query("Select * from bid_results where marketId = '$marketId' and date = '$marketDate'");
+    if($bidResultRes->num_rows > 0){
+        $bidResultData = $bidResultRes->fetch_assoc();
 
         echo "Jodi Game"."<br>";
         if($bidResultData['jodiScore'][0] != 'X' && $bidResultData['jodiScore'][1] != 'X'){
@@ -176,7 +178,19 @@ function manageWinnersFunction($marketId, $marketName){
             echo "Full Result not declared yet"."<br>";
         }
 
-// ------------------------SINGLE PATTI BID RESULT --------------------------------------------------
+    } else{
+        echo "Invalid Market for Jodi"."<br>";
+    }
+}
+// Jodi_Winners(12, "Time Bazar", "2023-02-13");
+
+function Single_Patti_Winners($marketId, $marketName, $marketDate){
+    global $conn;
+    global $addedOn;
+
+    $bidResultRes = $conn->query("Select * from bid_results where marketId = '$marketId' and date = '$marketDate'");
+    if($bidResultRes->num_rows > 0){
+        $bidResultData = $bidResultRes->fetch_assoc();
 
         echo "Single Patti Game"."<br>";
 
@@ -274,8 +288,21 @@ function manageWinnersFunction($marketId, $marketName){
             echo "No one played the game or result declared"."<br>";
         }
 
-// ------------------------DOUBLE PATTI BID RESULT --------------------------------------------------
-        
+    } else{
+        echo "Invalid Market for Single Ank"."<br>";
+    }
+
+}
+// Single_Patti_Winners(13, "Diamond Day", "2023-02-13");
+
+function Double_Patti_Winners($marketId, $marketName, $marketDate){
+    global $conn;
+    global $addedOn;
+
+    $bidResultRes = $conn->query("Select * from bid_results where marketId = '$marketId' and date = '$marketDate'");
+    if($bidResultRes->num_rows > 0){
+        $bidResultData = $bidResultRes->fetch_assoc();
+
         echo "Double Patti Game"."<br>";
 
         $doublePattiRes = $conn->query("Select * from double_patti_bids where marketId = '$marketId' and marketDate = '$marketDate' and status = 'Pending'");
@@ -372,7 +399,20 @@ function manageWinnersFunction($marketId, $marketName){
             echo "No one played the game or result declared"."<br>";
         }
 
-// ------------------------TRIPLE PATTI BID RESULT --------------------------------------------------
+    } else{
+        echo "Invalid Market for Double Patti"."<br>";
+    }
+
+}
+// Double_Patti_Winners(13, "Diamond Day", "2023-02-13");
+
+function Triple_Patti_Winners($marketId, $marketName, $marketDate){
+    global $conn;
+    global $addedOn;
+
+    $bidResultRes = $conn->query("Select * from bid_results where marketId = '$marketId' and date = '$marketDate'");
+    if($bidResultRes->num_rows > 0){
+        $bidResultData = $bidResultRes->fetch_assoc();
 
         echo "Triple Patti Game"."<br>";
 
@@ -470,7 +510,20 @@ function manageWinnersFunction($marketId, $marketName){
             echo "No one played the game or result declared"."<br>";
         }
 
-// ------------------------HALF SANGAM BID RESULT --------------------------------------------------
+    } else{
+        echo "Invalid Market for Triple Patti"."<br>";
+    }
+
+}
+// Triple_Patti_Winners(13, "Diamond Day", "2023-02-13");
+
+function Half_Sangam_Winners($marketId, $marketName, $marketDate){
+    global $conn;
+    global $addedOn;
+
+    $bidResultRes = $conn->query("Select * from bid_results where marketId = '$marketId' and date = '$marketDate'");
+    if($bidResultRes->num_rows > 0){
+        $bidResultData = $bidResultRes->fetch_assoc();
 
         echo "Half Sangam Game"."<br>";
 
@@ -569,7 +622,20 @@ function manageWinnersFunction($marketId, $marketName){
             echo "No one played the game or result declared"."<br>";
         }
 
-// ------------------------FULL SANGAM BID RESULT --------------------------------------------------
+    } else{
+        echo "Invalid Market for Half Sangam"."<br>";
+    }
+
+}
+// Half_Sangam_Winners(13, "Diamond Day", "2023-02-13");
+
+function Full_Sangam_Winners($marketId, $marketName, $marketDate){
+    global $conn;
+    global $addedOn;
+
+    $bidResultRes = $conn->query("Select * from bid_results where marketId = '$marketId' and date = '$marketDate'");
+    if($bidResultRes->num_rows > 0){
+        $bidResultData = $bidResultRes->fetch_assoc();
 
         echo "Full Sangam Game"."<br>";
 
@@ -628,76 +694,11 @@ function manageWinnersFunction($marketId, $marketName){
         } else{
             echo "No one played the game or result declared"."<br>";
         }
-// -------------------------------------------------------------------------------------------------
+
     } else{
-        echo "Invalid Market"."<br>";
+        echo "Invalid Market for Full Sangam"."<br>";
     }
+
 }
-
-$processStatus["error"] = false;
-$processStatus["message"] = "No Error";
-
-// Add/Update Bid result
-if(isset($_POST['pathAction']) && getSafeValue($_POST['pathAction']) == "Post-Bid-Result"){
-    $marketDate = date('Y-m-d', strtotime(getSafeValue($_POST['marketDate'])));
-    $marketIdsArray = $_POST['marketIds'];
-    $marketsArray = $_POST['markets'];
-    $openScoresArray = $_POST['openScores'];
-    $jodiScoresArray = $_POST['jodiScores'];
-    $closeScoresArray = $_POST['closeScores'];
-
-    for ($index=0; $index < count($marketIdsArray); $index++) {
-        
-        $checkRes = $conn->query("Select id from bid_results where marketId = '".$marketIdsArray[$index]."' and date = '$marketDate'");
-        if($checkRes->num_rows > 0){
-            
-            $updateMarketId = $checkRes->fetch_assoc()['id'];
-            $conn->query("Update bid_results set
-            openScore = '".$openScoresArray[$index]."',
-            jodiScore = '".$jodiScoresArray[$index]."',
-            closeScore = '".$closeScoresArray[$index]."'
-            where marketId = '".$marketIdsArray[$index]."' and date = '$marketDate' and id = '$updateMarketId'
-            ");
-            if($conn->affected_rows > 0){
-                echo "Update"."<br>";
-                if($openScoresArray[$index] != '' || $closeScoresArray[$index] != ''){
-                    $title = $marketsArray[$index];
-                    $content = ($openScoresArray[$index] == '' ? 'XXX' : $openScoresArray[$index]).'-'.$jodiScoresArray[$index].'-'.($closeScoresArray[$index] == '' ? 'XXX' : $closeScoresArray[$index]);
-                    // echo $title.' '.$marketDate.', '.$content;
-                    $currentDate = date('Y-m-d', strtotime($addedOn));
-                    echo $currentDate."<br>";
-                    manageWinnersFunction($marketIdsArray[$index], $marketsArray[$index]);
-                    if($currentDate == $marketDate){
-                        // pushNotification($title.' | '.$marketDate, $content);
-                    }
-                }
-            }
-        } else{
-            echo "Insert"."<br>";
-            $conn->query("Insert into bid_results set
-            openScore = '".$openScoresArray[$index]."',
-            jodiScore = '".$jodiScoresArray[$index]."',
-            closeScore = '".$closeScoresArray[$index]."',
-            marketId = '".$marketIdsArray[$index]."',
-            date = '$marketDate'
-            ");
-            if($conn->affected_rows > 0){
-
-                if($openScoresArray[$index] != '' || $closeScoresArray[$index] != ''){
-                    $title = $marketsArray[$index];
-                    $content = ($openScoresArray[$index] == '' ? 'XXX' : $openScoresArray[$index]).'-'.$jodiScoresArray[$index].'-'.($closeScoresArray[$index] == '' ? 'XXX' : $closeScoresArray[$index]);
-                    // echo $title.' '.$marketDate.', '.$content;
-                    $currentDate = date('Y-m-d', strtotime($addedOn));
-                    echo $currentDate."<br>";
-                    manageWinnersFunction($marketIdsArray[$index], $marketsArray[$index]);
-                    if($currentDate == $marketDate){
-                        // pushNotification($title.' | '.$marketDate, $content);
-                    }
-                }
-            }
-        }      
-    }
-    header("Location:../bid-result.php");
-}
-// ! Add/Update Bid Result
+Full_Sangam_Winners(13, "Diamond Day", "2023-02-13");
 ?>
