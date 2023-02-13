@@ -15,7 +15,7 @@ $processStatus["message"] = "No Error";
 
 // Create satta market
 if(isset($_POST['pathAction']) && getSafeValue($_POST['pathAction']) == "Create-Satta-Market"){
-    $mandatoryVal = isset($_POST["title"]) && isset($_POST["bidOpenTime"]) && isset($_POST["bidCloseTime"]) && isset($_POST["resultOpenTime"]) && isset($_POST["resultCloseTime"]);
+    $mandatoryVal = isset($_POST["title"]) && isset($_POST["openShiftStartTime"]) && isset($_POST["openShiftEndTime"]) && isset($_POST["openShiftResultTime"]) && isset($_POST["closeShiftStartTime"]) && isset($_POST["closeShiftStartTime"]) && isset($_POST["closeShiftEndTime"]) && isset($_POST["closeShiftResultTime"]);
 
     if(isset($_POST['marketStatus'])){
         $_POST['marketStatus'] = 'Active';
@@ -25,19 +25,23 @@ if(isset($_POST['pathAction']) && getSafeValue($_POST['pathAction']) == "Create-
     if($mandatoryVal){
         $title = getSafeValue($_POST['title']);
         $marketStatus = getSafeValue($_POST['marketStatus']);
-        $bidOpenTime = getSafeValue($_POST['bidOpenTime']);
-        $bidCloseTime = getSafeValue($_POST['bidCloseTime']);
-        $resultOpenTime = getSafeValue($_POST['resultOpenTime']);
-        $resultCloseTime = getSafeValue($_POST['resultCloseTime']);
+        $openShiftStartTime = getSafeValue($_POST['openShiftStartTime']);
+        $openShiftEndTime = getSafeValue($_POST['openShiftEndTime']);
+        $openShiftResultTime = getSafeValue($_POST['openShiftResultTime']);
+        $closeShiftStartTime = getSafeValue($_POST['closeShiftStartTime']);
+        $closeShiftEndTime = getSafeValue($_POST['closeShiftEndTime']);
+        $closeShiftResultTime = getSafeValue($_POST['closeShiftResultTime']);
 
         if($processStatus["error"] == false){
             $conn->query("Insert into satta_markets set 
             title = '$title',
             status = '$marketStatus',
-            bidOpenTime = '$bidOpenTime',
-            bidCloseTime = '$bidCloseTime',
-            resultOpenTime = '$resultOpenTime',
-            resultCloseTime = '$resultCloseTime',
+            openShiftStartTime = '$openShiftStartTime',
+            openShiftEndTime = '$openShiftEndTime',
+            openShiftResultTime = '$openShiftResultTime',
+            closeShiftStartTime = '$closeShiftStartTime',
+            closeShiftEndTime = '$closeShiftEndTime',
+            closeShiftResultTime = '$closeShiftResultTime',
             date = '$addedOn'
             ");
 
@@ -59,7 +63,7 @@ if(isset($_POST['pathAction']) && getSafeValue($_POST['pathAction']) == "Create-
 
 // Update satta market
 if(isset($_POST['pathAction']) && getSafeValue($_POST['pathAction']) == "Update-Satta-Market"){
-    $mandatoryVal = isset($_POST["marketId"]) && isset($_POST["title"]) && isset($_POST["bidOpenTime"]) && isset($_POST["bidCloseTime"]) && isset($_POST["resultOpenTime"]) && isset($_POST["resultCloseTime"]);
+    $mandatoryVal = isset($_POST["marketId"]) && isset($_POST["title"]) && isset($_POST["openShiftStartTime"]) && isset($_POST["openShiftEndTime"]) && isset($_POST["openShiftResultTime"]) && isset($_POST["closeShiftStartTime"]) && isset($_POST["closeShiftStartTime"]) && isset($_POST["closeShiftEndTime"]) && isset($_POST["closeShiftResultTime"]);
 
     if(isset($_POST['marketStatus'])){
         $_POST['marketStatus'] = 'Active';
@@ -70,19 +74,23 @@ if(isset($_POST['pathAction']) && getSafeValue($_POST['pathAction']) == "Update-
         $marketId = getSafeValue($_POST['marketId']);
         $title = getSafeValue($_POST['title']);
         $marketStatus = getSafeValue($_POST['marketStatus']);
-        $bidOpenTime = getSafeValue($_POST['bidOpenTime']);
-        $bidCloseTime = getSafeValue($_POST['bidCloseTime']);
-        $resultOpenTime = getSafeValue($_POST['resultOpenTime']);
-        $resultCloseTime = getSafeValue($_POST['resultCloseTime']);
+        $openShiftStartTime = getSafeValue($_POST['openShiftStartTime']);
+        $openShiftEndTime = getSafeValue($_POST['openShiftEndTime']);
+        $openShiftResultTime = getSafeValue($_POST['openShiftResultTime']);
+        $closeShiftStartTime = getSafeValue($_POST['closeShiftStartTime']);
+        $closeShiftEndTime = getSafeValue($_POST['closeShiftEndTime']);
+        $closeShiftResultTime = getSafeValue($_POST['closeShiftResultTime']);
 
         if($processStatus["error"] == false){
             $conn->query("Update satta_markets set 
             title = '$title',
             status = '$marketStatus',
-            bidOpenTime = '$bidOpenTime',
-            bidCloseTime = '$bidCloseTime',
-            resultOpenTime = '$resultOpenTime',
-            resultCloseTime = '$resultCloseTime'
+            openShiftStartTime = '$openShiftStartTime',
+            openShiftEndTime = '$openShiftEndTime',
+            openShiftResultTime = '$openShiftResultTime',
+            closeShiftStartTime = '$closeShiftStartTime',
+            closeShiftEndTime = '$closeShiftEndTime',
+            closeShiftResultTime = '$closeShiftResultTime'
             where id = '$marketId'
             ");
 

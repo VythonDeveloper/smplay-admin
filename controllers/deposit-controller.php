@@ -23,7 +23,7 @@ if(isset($_POST['pathAction']) && getSafeValue($_POST['pathAction']) == "Deposit
 
         if($processStatus["error"] == false){
             $conn->query("Update user set wallet = wallet + $depositAmount 
-            where id = '$beneficiaryId' and wallet + $depositAmount > 0");
+            where id = '$beneficiaryId' and wallet + $depositAmount >= 0");
 
             if($conn->affected_rows > 0){
                 $orderId = "DP-".substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(24 / strlen($x)))), 1, 24);

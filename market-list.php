@@ -24,10 +24,10 @@ $marketData = getSattaMarkets();
                     Title
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Bid Time
+                    Open Shift
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Result Time
+                    Close Shift
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Status
@@ -48,10 +48,14 @@ $marketData = getSattaMarkets();
                         <?php echo $value['title'];?>
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 light:text-white">
-                        <?php echo $value['bidOpenTime'].' - '.$value['bidCloseTime'];?>
+                        Start Time: <?php echo $value['openShiftStartTime'];?><br>
+                        End Time: <?php echo $value['openShiftEndTime'];?><br>
+                        Result Time: <?php echo $value['openShiftResultTime'];?>
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 light:text-white">
-                        <?php echo $value['resultOpenTime'].' - '.$value['resultCloseTime'];?>
+                        Start Time: <?php echo $value['closeShiftStartTime'];?><br>
+                        End Time: <?php echo $value['closeShiftEndTime'];?><br>
+                        Result Time: <?php echo $value['closeShiftResultTime'];?>
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 light:text-white">
                         <?php echo $value['status'];?>

@@ -17,7 +17,7 @@ function getSafeValue($value){
 function getSattaMarkets(){
 	global $conn;
 	$serverData = Array();
-	$res = $conn->query("Select * from satta_markets order by id desc");
+	$res = $conn->query("Select * from satta_markets order by id asc");
 	if($res->num_rows > 0){
 		while($row = $res->fetch_assoc()){
 			$serverData[count($serverData)] = $row;
