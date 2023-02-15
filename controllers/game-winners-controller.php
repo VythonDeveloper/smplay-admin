@@ -700,5 +700,5 @@ function Full_Sangam_Winners($marketId, $marketName, $marketDate){
     }
 
 }
-Full_Sangam_Winners(13, "Diamond Day", "2023-02-13");
+// Full_Sangam_Winners(13, "Diamond Day", "2023-02-13");
 ?>

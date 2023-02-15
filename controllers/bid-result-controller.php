@@ -668,7 +668,7 @@ if(isset($_POST['pathAction']) && getSafeValue($_POST['pathAction']) == "Post-Bi
                     echo $currentDate."<br>";
                     manageWinnersFunction($marketIdsArray[$index], $marketsArray[$index]);
                     if($currentDate == $marketDate){
-                        // pushNotification($title.' | '.$marketDate, $content);
+                        pushNotification($title.' | '.$marketDate, $content);
                     }
                 }
             }
@@ -691,7 +691,7 @@ if(isset($_POST['pathAction']) && getSafeValue($_POST['pathAction']) == "Post-Bi
                     echo $currentDate."<br>";
                     manageWinnersFunction($marketIdsArray[$index], $marketsArray[$index]);
                     if($currentDate == $marketDate){
-                        // pushNotification($title.' | '.$marketDate, $content);
+                        pushNotification($title.' | '.$marketDate, $content);
                     }
                 }
             }
